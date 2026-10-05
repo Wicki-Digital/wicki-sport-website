@@ -1,0 +1,20 @@
+{
+  "status": "draft",
+  "slug": "mein-rezept",
+  "title": "Rezepttitel ergänzen",
+  "description": "Eine kurze Beschreibung des Gerichts ergänzen.",
+  "categories": ["low-carb"],
+  "datePublished": "",
+  "servings": 2,
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "restMinutes": 0,
+  "image": "",
+  "imageAlt": "",
+  "imageWidth": 0,
+  "imageHeight": 0,
+  "ingredients": ["Zutat mit Menge ergänzen"],
+  "steps": ["Ersten Zubereitungsschritt ergänzen", "Weitere Schritte ergänzen"],
+  "notes": "",
+  "nutritionPerServing": null
+}
