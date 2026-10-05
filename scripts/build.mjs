@@ -104,7 +104,7 @@ function recipeImage(r, hero = false) {
 }
 function recipeCard(r) {
   const search = [r.title, r.description, ...r.ingredients, ...r.categories.map(categoryName)].join(' ');
-  return `<article class="recipe-card" data-recipe-card data-search="${escape(search)}"><a href="/rezepte/${r.slug}/" class="recipe-card-link">${recipeImage(r)}<div class="recipe-card-body"><p class="recipe-category">${r.categories.map(categoryName).map(escape).join(' · ')}</p><h3>${escape(r.title)}</h3><p>${escape(r.description)}</p><p class="recipe-meta">${totalMinutes(r)} Min. gesamt <span aria-hidden="true">·</span> ${r.servings} ${r.servings === 1 ? 'Portion' : 'Portionen'}</p><span class="text-link">REZEPT ANSEHEN ↗</span></div></a></article>`;
+  return `<article class="recipe-card" data-recipe-card data-search="${escape(search)}"><a href="/rezepte/${r.slug}/" class="recipe-card-link"><div class="recipe-card-media">${recipeImage(r)}</div><div class="recipe-card-body"><p class="recipe-category">${r.categories.map(categoryName).map(escape).join(' · ')}</p><h3>${escape(r.title)}</h3><p>${escape(r.description)}</p><p class="recipe-meta">${totalMinutes(r)} Min. gesamt <span aria-hidden="true">·</span> ${r.servings} ${r.servings === 1 ? 'Portion' : 'Portionen'}</p><span class="text-link">REZEPT ANSEHEN ↗</span></div></a></article>`;
 }
 function categoryNavigation(selected) {
   const links = [{ slug: '', name: 'Alle Rezepte' }, ...categories];
