@@ -1,0 +1,53 @@
+{
+  "status": "published",
+  "slug": "keto-vanille-protein-cups",
+  "title": "Keto Vanille-Protein-Cups mit 99-%-Schokolade",
+  "seoTitle": "Keto Protein-Cups mit Vanille & Schokolade | Wicki Sport",
+  "seoDescription": "Proteinreiche Keto Protein-Cups mit Vanille-Isowhey, Mandelmus, Mandeln und 99-%-Schokolade. Einfaches Low-Carb-Rezept ohne Backen.",
+  "description": "Proteinreich, kohlenhydratarm und ohne Backen: Cremige Vanille-Mandel-Protein-Cups mit einer knackigen Schicht aus 99-%-Schokolade. Ein einfacher Keto-Snack mit hochwertigem Whey-Isolat, Mandeln und Mandelmus.",
+  "categories": ["ketogen"],
+  "datePublished": "2026-10-05",
+  "servings": 6,
+  "servingsLabel": "6 Protein-Cups",
+  "prepMinutes": 15,
+  "cookMinutes": 0,
+  "restMinutes": 60,
+  "image": "/assets/keto-vanille-protein-cups.jpeg",
+  "imageAlt": "Keto Vanille-Protein-Cups mit Mandelmus und 99-%-Schokolade",
+  "imageWidth": 1370,
+  "imageHeight": 1148,
+  "imageFit": "contain",
+  "ingredients": [
+    "120 g ZNT Isowhey Pro Vanille",
+    "70 g Mandelmus",
+    "60 g Mandeln",
+    "20 g Kokosöl",
+    "50–70 ml ungesüsste Mandelmilch",
+    "30 g 99-%-Schokolade",
+    "1 Prise Salz",
+    "Optional: etwas Zimt",
+    "Optional für die Schokoladenschicht: 5 g Kokosöl"
+  ],
+  "steps": [
+    "Mandeln fein mahlen.",
+    "Die gemahlenen Mandeln mit dem Vanille-Isowhey und einer Prise Salz vermischen.",
+    "Mandelmus und 20 g geschmolzenes Kokosöl dazugeben und alles gründlich vermengen.",
+    "Zunächst 50 ml Mandelmilch dazugeben und die Masse kräftig vermengen bzw. kneten.",
+    "Falls die Masse noch zu trocken oder bröselig ist, weitere Mandelmilch in kleinen Mengen von etwa 5 ml hinzufügen. Die fertige Masse soll fest und formbar sein und ungefähr die Konsistenz eines weichen Keksteigs haben.",
+    "Sechs Papier-Muffinförmchen in eine Muffinform setzen.",
+    "Die Proteinmasse gleichmässig auf die sechs Förmchen verteilen und mit einem Löffel fest nach unten drücken. Die Oberfläche möglichst glattstreichen.",
+    "Die 99-%-Schokolade vorsichtig schmelzen. Optional 5 g Kokosöl unterrühren, damit sich die Schokolade dünner und gleichmässiger verteilen lässt.",
+    "Die geschmolzene Schokolade gleichmässig auf den sechs Protein-Cups verteilen.",
+    "Die Cups für mindestens 1–2 Stunden in den Kühlschrank stellen. Alternativ können sie zunächst etwa 30 Minuten im Gefrierfach fest werden.",
+    "Gekühlt servieren und im Kühlschrank aufbewahren."
+  ],
+  "notes": "Zubereitungsart: No-Bake / ohne Backen.\n\nZubereitungszeit: ca. 15 Minuten + 1–2 Stunden Kühlzeit. Die Zeitübersicht zeigt die kürzere Kühlzeit von 60 Minuten; je nach Festigkeit insgesamt ca. 75–135 Minuten einplanen.\n\nBesonderheiten: Ketogen · High Protein · Low Carb · No-Bake · Glutenfrei · Snack · Dessert. Für die glutenfreie Zubereitung entsprechend gekennzeichnete Produkte verwenden.",
+  "tags": ["Ketogen", "High Protein", "Low Carb", "No-Bake", "Glutenfrei", "Snack", "Dessert"],
+  "nutritionPerServing": {
+    "kcal": 240,
+    "protein": 21.5,
+    "fat": 15.5,
+    "carbs": 3,
+    "note": "Ungefähre Werte pro Protein-Cup bei 6 Stück: ca. 240 kcal, 21–22 g Protein, 15–16 g Fett und 3 g Kohlenhydrate. Die Tabellenwerte für Protein und Fett entsprechen den Mittelwerten dieser Spannen. Die Angaben können je nach verwendeten Produkten und Menge der Mandelmilch leicht variieren; auch das optionale Kokosöl verändert die Werte."
+  }
+}
