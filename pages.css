@@ -29,6 +29,10 @@ input:focus-visible{outline:2px solid var(--bronze);outline-offset:4px}
 .home-recipes{border-top:1px solid var(--line)}
 .coaching-lifestyle{background:var(--panel)}
 
+/* Scale stage portraits with their width instead of retaining the HTML pixel height. */
+.social-grid{align-items:start}
+.social-grid img,.social-grid img:last-child{width:100%;height:auto;min-height:0;aspect-ratio:auto;align-self:start;background:transparent}
+
 /* Recipe categories and blog-style collection. */
 /* Current training photos: retain the complete original framing. */
 .current-training{border-top:1px solid var(--line)}
