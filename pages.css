@@ -30,6 +30,14 @@ input:focus-visible{outline:2px solid var(--bronze);outline-offset:4px}
 .coaching-lifestyle{background:var(--panel)}
 
 /* Recipe categories and blog-style collection. */
+/* Current training photos: retain the complete original framing. */
+.current-training{border-top:1px solid var(--line)}
+.training-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:1100px;margin-inline:auto}
+.training-gallery figure{margin:0;min-width:0}
+.training-gallery img{display:block;width:100%;height:auto;object-fit:contain}
+.training-gallery figcaption{padding:16px 0;color:var(--bronze);font-size:.875rem;letter-spacing:.06em}
+@media(max-width:650px){.training-gallery{grid-template-columns:1fr;gap:25px}}
+
 .category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-block:35px}
 .category-card{display:flex;flex-direction:column;min-width:0;border:1px solid var(--line);background:#141310;padding:30px;transition:border-color .2s,background .2s}
 .category-card:hover{border-color:var(--bronze);background:#1e1914}
