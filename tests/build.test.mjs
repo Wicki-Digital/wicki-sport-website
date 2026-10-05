@@ -58,7 +58,7 @@ test('Recipe lifecycle: draft, publish, multiple categories, safe text, nutritio
     assert.equal(build().status, 0);
     assert.equal(existsSync(resolve(root, 'rezepte/test-recipe/index.html')), false);
     assert.ok(!read('sitemap.xml').includes('/rezepte/test-recipe/'));
-    assert.ok(!read('rezepte/index.html').includes('data-recipe-card'));
+    assert.ok(!read('rezepte/index.html').includes('/rezepte/test-recipe/'));
   } finally {
     rmSync(temporary, { recursive: true, force: true });
   }

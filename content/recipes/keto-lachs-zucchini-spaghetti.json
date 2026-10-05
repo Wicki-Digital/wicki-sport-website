@@ -1,0 +1,44 @@
+{
+  "status": "published",
+  "slug": "keto-lachs-zucchini-spaghetti",
+  "title": "Keto-Lachs auf Zucchini-Spaghetti mit Parmesan-Rahmsauce",
+  "description": "Cremig, proteinreich und kohlenhydratarm: Gebratener Lachs auf Zucchini-Spaghetti mit einer kräftigen Parmesan-Rahmsauce. Ein einfaches ketogenes Hauptgericht mit hochwertigen Protein- und Fettquellen.",
+  "categories": ["ketogen"],
+  "datePublished": "2026-10-05",
+  "servings": 1,
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "restMinutes": 0,
+  "image": "/assets/keto-lachs-zucchini-spaghetti.jpeg",
+  "imageAlt": "Gebratener Lachs mit Parmesan auf Zucchini-Bändern in cremiger Parmesan-Rahmsauce auf einem weissen Teller",
+  "imageWidth": 1152,
+  "imageHeight": 1536,
+  "ingredients": [
+    "200 g Lachsfilet",
+    "300 g Zucchini",
+    "100 ml Vollrahm",
+    "30 g Frischkäse Nature, vollfett",
+    "30 g Parmesan",
+    "10 g Butter",
+    "Etwas Zitronensaft",
+    "Salz",
+    "Schwarzer Pfeffer",
+    "Knoblauchpulver oder 1 kleine Knoblauchzehe",
+    "Optional: Petersilie oder Schnittlauch",
+    "Optional: etwas Muskat"
+  ],
+  "steps": [
+    "Zucchini vorbereiten\n\nDie Zucchini mit einem Spiralschneider zu Spaghetti schneiden. Alternativ können mit einem Sparschäler breite Zucchini-Tagliatelle hergestellt werden.\n\n5 g Butter in einer grossen Pfanne erhitzen und die Zucchini etwa 2–3 Minuten kräftig anbraten. Leicht salzen und anschliessend aus der Pfanne nehmen.\n\nDie Zucchini sollen noch Biss haben und nicht zu weich werden.",
+    "Lachs braten\n\nLachs trocken tupfen und mit Salz und Pfeffer würzen.\n\nDie restlichen 5 g Butter in die Pfanne geben.\n\nLachs mit Haut zuerst etwa 4–5 Minuten auf der Hautseite braten. Anschliessend wenden und abhängig von der Dicke weitere 2–4 Minuten braten.\n\nHerausnehmen und kurz ruhen lassen.",
+    "Keto-Parmesan-Rahmsauce\n\n100 ml Vollrahm und 30 g Frischkäse in dieselbe Pfanne geben und bei niedriger bis mittlerer Hitze miteinander verrühren.\n\n20 g Parmesan dazugeben.\n\nMit schwarzem Pfeffer, wenig Salz, Knoblauch und einem kleinen Spritzer Zitronensaft abschmecken.\n\nEtwa 2–3 Minuten sanft einkochen lassen, bis eine dicke und cremige Sauce entsteht.",
+    "Fertigstellen\n\nDie Zucchini-Spaghetti zurück in die Sauce geben und etwa 30–60 Sekunden darin schwenken.\n\nAnschliessend auf einem Teller anrichten und den Lachs darauflegen.\n\nDie restlichen 10 g Parmesan darübergeben und nach Wunsch mit schwarzem Pfeffer und frischen Kräutern garnieren."
+  ],
+  "notes": "Eine Portion entspricht 1 grossen Hauptmahlzeit.\n\nGewichte der Hauptzutaten: Lachsfilet 200 g, Zucchini 300 g, Vollrahm 100 ml, Frischkäse 30 g, Parmesan 30 g und Butter 10 g. Gesamtes Rohgewicht: ca. 670 g.\n\nZeitangaben sind geschätzt: ca. 10 Minuten Vorbereitung und 15 Minuten Kochzeit. Der Lachs ruht kurz, während die Sauce zubereitet wird.",
+  "nutritionPerServing": {
+    "kcal": 1065,
+    "protein": 58,
+    "fat": 87,
+    "carbs": 11,
+    "note": "Ungefähre, geschätzte Nährwerte für die gesamte Portion (1 grosse Hauptmahlzeit). Die Werte können je nach verwendeten Produkten variieren. Geschätzte verwertbare/Netto-Kohlenhydrate: ca. 7–9 g pro Portion."
+  }
+}

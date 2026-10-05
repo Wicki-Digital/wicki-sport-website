@@ -10,7 +10,7 @@ const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', 
 const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const categories = [
   { slug: 'low-carb', name: 'Low Carb', kicker: 'WENIGER KOHLENHYDRATE', text: 'Ideen für Mahlzeiten mit reduziertem Kohlenhydratanteil.' },
-  { slug: 'ketogen', name: 'Ketogen', kicker: 'BEWUSST ZUSAMMENSTELLEN', text: 'Rezepte mit sehr wenig Kohlenhydraten für eine ketogene Ernährung.' },
+  { slug: 'ketogen', name: 'Ketogene Rezepte', kicker: 'BEWUSST ZUSAMMENSTELLEN', text: 'Rezepte mit sehr wenig Kohlenhydraten für eine ketogene Ernährung.' },
   { slug: 'allgemeine-diaetrezepte', name: 'Allgemeine Diätrezepte', kicker: 'ABWECHSLUNG IM ALLTAG', text: 'Vielseitige Rezeptideen für eine bewusste, planbare Ernährung.' }
 ];
 const navigation = [
