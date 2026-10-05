@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://wickisport.ch/</loc>
-  </url>
+  <url><loc>https://wickisport.ch/</loc></url>
+  <url><loc>https://wickisport.ch/philosophie/</loc></url>
+  <url><loc>https://wickisport.ch/ueber-mich/</loc></url>
+  <url><loc>https://wickisport.ch/coaching/</loc></url>
+  <url><loc>https://wickisport.ch/wissen/</loc></url>
+  <url><loc>https://wickisport.ch/impressum/</loc></url>
+  <url><loc>https://wickisport.ch/datenschutz/</loc></url>
+  <url><loc>https://wickisport.ch/rezepte/</loc></url>
+  <url><loc>https://wickisport.ch/rezepte/low-carb/</loc></url>
+  <url><loc>https://wickisport.ch/rezepte/ketogen/</loc></url>
+  <url><loc>https://wickisport.ch/rezepte/allgemeine-diaetrezepte/</loc></url>
 </urlset>

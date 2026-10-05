@@ -1,6 +1,92 @@
-const menu=document.querySelector('.menu'),nav=document.querySelector('header nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Menü schliessen':'Menü öffnen')});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
-const topics=[['MUSKELAUFBAU','Wie entsteht Muskelwachstum und welche Faktoren sind wirklich entscheidend?'],['KREATIN','Was bringt Kreatin und wie wird es sinnvoll eingesetzt?'],['REGENERATION','Warum Fortschritt nicht nur im Training entsteht.'],['KÄLTE & EISBAD','Wann Kälte sinnvoll ist und welche Fragen sich für Bodybuilder stellen.'],['HALTUNG','Wie Muskulatur, Mobilität und Gewohnheiten Haltung und Ausstrahlung beeinflussen.'],['ERNÄHRUNG','Eine alltagstaugliche Ernährung, ohne das ganze Leben danach auszurichten.']];document.querySelector('.topics').innerHTML=topics.map(([h,p])=>`<article class="topic"><div><h3>${h}</h3><p>${p}</p></div><span>AUF INSTAGRAM</span></article>`).join('');
-async function copy(text,status){try{await navigator.clipboard.writeText(text);status.textContent='Kopiert.'}catch{status.textContent='Bitte den Code manuell kopieren.'}}
-document.querySelector('#copy-code').addEventListener('click',()=>copy('#wicki15',document.querySelector('#code-status')));document.querySelector('#year').textContent=new Date().getFullYear();
-const legal=document.querySelector('#legal');const legalCopy={impressum:'<h2>Impressum</h2><p><strong>Wicki Sport</strong><br>Matthias Wicki<br>Bodenacker 24<br>5619 Uezwil<br>Schweiz</p><p>E-Mail: <a href="mailto:matthias@wickisport.ch">matthias@wickisport.ch</a></p>',datenschutz:'<h2>Datenschutz</h2><h3>Verantwortlicher</h3><p>Matthias Wicki<br>Wicki Sport<br>Bodenacker 24<br>5619 Uezwil<br>Schweiz<br>E-Mail: <a href="mailto:matthias@wickisport.ch">matthias@wickisport.ch</a></p><h3>Bereitstellung der Website</h3><p>Diese Website wird über GitHub Pages, einen Dienst von GitHub, Inc., bereitgestellt. Beim Aufruf können technisch erforderliche Verbindungs- und Zugriffsdaten verarbeitet werden, etwa IP-Adresse, Zeitpunkt, angeforderte Datei, übertragene Datenmenge, Browser beziehungsweise Betriebssystem und Referrer. Diese Verarbeitung dient der sicheren und zuverlässigen Auslieferung der Website. Weitere Informationen enthält die <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</p><h3>Domain, DNS und E-Mail</h3><p>Domain- und DNS-Dienste sowie das E-Mail-Postfach werden von Infomaniak Network SA bereitgestellt. Bei DNS-Abfragen und bei der Nutzung der E-Mail-Infrastruktur können die für den jeweiligen Dienst erforderlichen technischen Daten verarbeitet werden. Weitere Informationen enthält die <a href="https://www.infomaniak.com/de/agb/datenschutzrichtlinie" target="_blank" rel="noopener">Datenschutzrichtlinie von Infomaniak</a>.</p><h3>Kontakt per E-Mail</h3><p>Wenn du per E-Mail Kontakt aufnimmst, werden die von dir übermittelten Angaben und technischen Nachrichtendaten zur Bearbeitung deiner Anfrage und der weiteren Kommunikation verarbeitet. Sie werden so lange aufbewahrt, wie dies für die Korrespondenz erforderlich ist; gesetzliche Aufbewahrungspflichten können eine längere Speicherung erfordern. Bitte sende keine Angaben, die für deine Anfrage nicht notwendig sind.</p><h3>Externe Links</h3><p>Diese Website enthält Links zu Instagram, Harder Supps, Wicki Digital sowie zu den Datenschutzhinweisen der eingesetzten Anbieter. Daten werden an diese externen Seiten erst übermittelt, wenn du einen solchen Link aufrufst. Für die anschliessende Verarbeitung gelten die Hinweise des jeweiligen Anbieters.</p><h3>Schriften, Analyse und Cookies</h3><p>Diese Website lädt Barlow Condensed und Manrope über Google Fonts. Beim Abruf stellt dein Browser eine Verbindung zu Servern von Google her. Dabei können insbesondere deine IP-Adresse sowie technische Angaben zum Browser und zum Abruf an Google übermittelt werden. Wicki Sport setzt auf dieser Website keine Analyse- oder Marketingdienste und keine eigenen Tracking-Cookies ein.</p><h3>Deine Anliegen</h3><p>Bei Fragen zur Bearbeitung deiner Personendaten oder wenn du deine datenschutzrechtlichen Rechte ausüben möchtest, kontaktiere Matthias Wicki unter <a href="mailto:matthias@wickisport.ch">matthias@wickisport.ch</a>.</p><p><small>Stand: September 2026</small></p>'};document.querySelectorAll('[data-legal]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('#legal-content').innerHTML=legalCopy[b.dataset.legal];legal.showModal()}));document.querySelector('#close-legal').addEventListener('click',()=>legal.close());legal.addEventListener('click',e=>{if(e.target===legal){const r=legal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)legal.close()}});
-if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pending-reveal');io.unobserve(e.target)}}),{threshold:.07});document.querySelectorAll('.pillars article,.section-heading,.nutrition-card').forEach(el=>{el.classList.add('reveal','pending-reveal');io.observe(el)})}
+'use strict';
+
+document.documentElement.classList.add('js');
+const menu = document.querySelector('.menu');
+const nav = document.querySelector('#main-nav');
+const header = document.querySelector('.site-header');
+if (menu && nav) {
+  menu.hidden = false;
+  const setMenu = open => {
+    nav.classList.toggle('open', open);
+    menu.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+  };
+  menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menu.focus();
+    }
+  });
+  document.addEventListener('click', event => {
+    if (header && !header.contains(event.target)) setMenu(false);
+  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 1100) setMenu(false); });
+}
+const year = document.querySelector('#year');
+if (year) year.textContent = new Date().getFullYear();
+const copyButton = document.querySelector('#copy-code');
+if (copyButton) copyButton.addEventListener('click', async () => {
+  const status = document.querySelector('#code-status');
+  if (!status) return;
+  try {
+    await navigator.clipboard.writeText('#wicki15');
+    status.textContent = 'Kopiert.';
+  } catch {
+    status.textContent = 'Bitte den Code #wicki15 manuell kopieren.';
+  }
+});
+
+// Preserve incoming links to sections of the former one-page website.
+const oldSections = {
+  '#philosophie': '/philosophie/', '#matthias': '/ueber-mich/',
+  '#coaching': '/coaching/', '#wissen': '/wissen/',
+  '#training': '/coaching/#training', '#ernaehrung': '/coaching/#ernaehrung'
+};
+function followOldSection() {
+  if (document.body.dataset.page === 'start' && oldSections[window.location.hash]) {
+    window.location.replace(oldSections[window.location.hash]);
+  }
+}
+followOldSection();
+window.addEventListener('hashchange', followOldSection);
+
+function normaliseRecipeSearch(value) {
+  return value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase('de-CH').trim();
+}
+const searchForm = document.querySelector('[data-recipe-search]');
+if (searchForm) {
+  const input = searchForm.querySelector('input');
+  const cards = [...document.querySelectorAll('[data-recipe-card]')];
+  const empty = document.querySelector('[data-search-empty]');
+  const count = document.querySelector('[data-recipe-count]');
+  if (input && empty && count) {
+    searchForm.hidden = false;
+    const texts = cards.map(card => normaliseRecipeSearch(card.dataset.search || ''));
+    const applySearch = () => {
+      const words = normaliseRecipeSearch(input.value).split(/\s+/).filter(Boolean);
+      let visible = 0;
+      cards.forEach((card, index) => {
+        const matches = words.every(word => texts[index].includes(word));
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+      count.textContent = String(visible) + (visible === 1 ? ' Rezept' : ' Rezepte');
+      empty.hidden = visible > 0;
+    };
+    input.addEventListener('input', applySearch);
+    searchForm.addEventListener('submit', event => { event.preventDefault(); applySearch(); });
+    searchForm.addEventListener('reset', event => {
+      event.preventDefault();
+      input.value = '';
+      applySearch();
+      input.focus();
+    });
+    applySearch();
+  }
+}
+document.querySelectorAll('[data-print]').forEach(button => {
+  button.hidden = false;
+  button.addEventListener('click', () => window.print());
+});
