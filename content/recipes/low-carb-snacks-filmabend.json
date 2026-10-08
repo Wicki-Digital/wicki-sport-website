@@ -69,13 +69,17 @@
       "imageHeight": 1016,
       "imageFit": "contain",
       "imageAlt": "Geröstete Nüsse mit Paprikagewürz und Rosmarin als Serviervorschlag für Paprika-Mandeln",
-      "ingredients": ["30 g Mandeln", "Wenig Olivenöl (ca. 2 g)", "Paprikapulver", "Salz", "Optional: Rosmarin"],
+      "ingredients": ["30 g Mandeln", "½ TL Kokosöl (ca. 2–3 g)", "Paprikapulver", "Salz", "Optional: Rosmarin"],
       "steps": [
-        "Mandeln mit Olivenöl und Gewürzen vermengen.",
-        "Bei 160 °C etwa 10–12 Minuten rösten und anschliessend auskühlen lassen."
+        "Kokosöl leicht erwärmen, bis es flüssig ist.",
+        "Mandeln mit dem Kokosöl, Paprikapulver, Salz und optional Rosmarin vermischen.",
+        "Die gewürzten Mandeln auf einem mit Backpapier belegten Backblech verteilen.",
+        "Im vorgeheizten Backofen bei 140 °C Umluft für ca. 10–12 Minuten rösten.",
+        "Nach etwa 5–6 Minuten einmal wenden oder durchmischen.",
+        "Anschliessend vollständig auskühlen lassen, damit die Mandeln schön knusprig werden."
       ],
-      "nutritionText": "ca. 205 kcal · 7 g Protein · 18 g Fett · 2 g Kohlenhydrate",
-      "note": "Die Beispielrechnung enthält ca. 2 g Olivenöl. Mehr Öl erhöht den Energie- und Fettgehalt."
+      "nutritionText": "ca. 205–215 kcal · 7 g Protein · 18–19 g Fett · 2 g Kohlenhydrate",
+      "note": "Ungefähre Nährwerte für 30 g Mandeln mit 2–3 g Kokosöl. Die Spanne berücksichtigt die unterschiedliche Ölmenge; je nach Produkten können die Werte abweichen. Gewürze und optionaler Rosmarin sind nicht separat eingerechnet."
     },
     {
       "id": "gemuese-sticks",
