@@ -11,7 +11,8 @@ const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const categories = [
   { slug: 'low-carb', name: 'Low Carb', kicker: 'WENIGER KOHLENHYDRATE', text: 'Ideen für Mahlzeiten mit reduziertem Kohlenhydratanteil.' },
   { slug: 'ketogen', name: 'Ketogene Rezepte', kicker: 'BEWUSST ZUSAMMENSTELLEN', text: 'Rezepte mit sehr wenig Kohlenhydraten für eine ketogene Ernährung.' },
-  { slug: 'allgemeine-diaetrezepte', name: 'Allgemeine Diätrezepte', kicker: 'ABWECHSLUNG IM ALLTAG', text: 'Vielseitige Rezeptideen für eine bewusste, planbare Ernährung.' }
+  { slug: 'allgemeine-diaetrezepte', name: 'Allgemeine Diätrezepte', kicker: 'ABWECHSLUNG IM ALLTAG', text: 'Vielseitige Rezeptideen für eine bewusste, planbare Ernährung.' },
+  { slug: 'snacks', name: 'Snacks', kicker: 'KLEINE GENUSSMOMENTE', text: 'Süsse und salzige Snack-Ideen, Desserts und Inspiration für deinen Filmabend.' }
 ];
 const navigation = [
   ['start', '/', 'Startseite'], ['philosophie', '/philosophie/', 'Philosophie'],
@@ -33,8 +34,8 @@ const urls = [];
 function heading(label, title, intro = '', parent = null) {
   return `<section class="page-intro"><nav class="breadcrumbs" aria-label="Brotkrumennavigation"><a href="/">Startseite</a><span aria-hidden="true">/</span>${parent ? `<a href="${parent.path}">${escape(parent.name)}</a><span aria-hidden="true">/</span>` : ''}<span aria-current="page">${escape(label)}</span></nav><p class="eyebrow">WICKI SPORT / ${escape(label.toUpperCase())}</p><h1>${title}</h1>${intro ? `<p class="page-intro-text">${escape(intro)}</p>` : ''}</section>`;
 }
-function categoryCards() {
-  return `<div class="category-grid">${categories.map((c, i) => `<a class="category-card category-${c.slug}" href="/rezepte/${c.slug}/"><span class="category-index" aria-hidden="true">0${i + 1}</span><div><p class="eyebrow">${c.kicker}</p><h3>${c.name}</h3><p>${c.text}</p><span class="text-link">KATEGORIE ENTDECKEN ↗</span></div></a>`).join('')}</div>`;
+function categoryCards(includeSnacks = false) {
+  return `<div class="category-grid">${categories.filter(c => includeSnacks || c.slug !== 'snacks').map((c, i) => `<a class="category-card category-${c.slug}" href="/rezepte/${c.slug}/"><span class="category-index" aria-hidden="true">0${i + 1}</span><div><p class="eyebrow">${c.kicker}</p><h3>${c.name}</h3><p>${c.text}</p><span class="text-link">KATEGORIE ENTDECKEN ↗</span></div></a>`).join('')}</div>`;
 }
 function render(page, main, schema = null) {
   const links = navigation.map(([key, path, label]) => `<a href="${path}"${page.key === key ? ` aria-current="${page.path === path ? 'page' : 'true'}"` : ''}>${label}</a>`);
@@ -62,28 +63,51 @@ for (const page of pages) {
 const reserved = new Set(categories.map(c => c.slug));
 function required(condition, message) { if (!condition) throw new Error(message); }
 function nonempty(value) { return typeof value === 'string' && value.trim().length > 0; }
+function validateImage(item, check) {
+  if (!item.image) return;
+  check(/^\/assets\/[a-zA-Z0-9_./-]+\.(?:webp|jpe?g|png)$/i.test(item.image) && !item.image.includes('..'), 'Bild muss eine lokale Datei unter /assets/ sein.');
+  check(existsSync(resolve(root, item.image.slice(1))), 'Bilddatei fehlt.');
+  check(nonempty(item.imageAlt), 'Alternativtext für das Bild fehlt.');
+  check(Number.isInteger(item.imageWidth) && item.imageWidth > 0 && Number.isInteger(item.imageHeight) && item.imageHeight > 0, 'Bildabmessungen ergänzen.');
+  if (item.imageFit !== undefined) check(['cover', 'contain'].includes(item.imageFit), 'imageFit muss cover oder contain sein.');
+  if (item.imageSmall !== undefined) {
+    check(/^\/assets\/[a-zA-Z0-9_-]+\.webp$/.test(item.imageSmall) && existsSync(resolve(root, item.imageSmall.slice(1))), 'Kleine Bilddatei fehlt oder hat einen ungültigen Pfad.');
+    check(Number.isInteger(item.imageSmallWidth) && item.imageSmallWidth > 0 && item.imageSmallWidth < item.imageWidth, 'Breite der kleinen Bildvariante prüfen.');
+  }
+}
 function validateRecipe(recipe, filename) {
   const check = (condition, message) => required(condition, `${filename}: ${message}`);
   check(['draft', 'published'].includes(recipe.status), 'status muss draft oder published sein.');
   check(typeof recipe.slug === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(recipe.slug) && !reserved.has(recipe.slug), 'Einen eindeutigen, gültigen slug verwenden.');
   if (recipe.status === 'draft') return;
-  for (const key of ['seoTitle', 'seoDescription', 'servingsLabel']) if (recipe[key] !== undefined) check(nonempty(recipe[key]), `${key} muss nicht leerer Text sein.`);
+  for (const key of ['seoTitle', 'seoDescription', 'servingsLabel', 'totalTimeLabel', 'restTimeLabel']) if (recipe[key] !== undefined) check(nonempty(recipe[key]), `${key} muss nicht leerer Text sein.`);
   if (recipe.imageFit !== undefined) check(['cover', 'contain'].includes(recipe.imageFit), 'imageFit muss cover oder contain sein.');
   for (const key of ['title', 'description']) check(nonempty(recipe[key]), `${key} fehlt.`);
   check(Array.isArray(recipe.categories) && recipe.categories.length > 0 && recipe.categories.every(x => reserved.has(x)), 'Mindestens eine bekannte Kategorie wählen.');
   check(new Set(recipe.categories).size === recipe.categories.length, 'Kategorien nicht doppelt vergeben.');
   check(/^\d{4}-\d{2}-\d{2}$/.test(recipe.datePublished) && !Number.isNaN(Date.parse(recipe.datePublished)) && new Date(recipe.datePublished).toISOString().slice(0, 10) === recipe.datePublished, 'Gültiges Veröffentlichungsdatum als JJJJ-MM-TT ergänzen.');
   check(recipe.datePublished <= new Date().toISOString().slice(0, 10), 'Das Veröffentlichungsdatum liegt in der Zukunft.');
+  check(recipe.type === undefined || ['recipe', 'article'].includes(recipe.type), 'Unbekannter Inhaltstyp.');
+  validateImage(recipe, check);
+  if (recipe.type === 'article') {
+    check(nonempty(recipe.cardMeta), 'Kurzangabe für die Beitragskarte fehlt.');
+    for (const key of ['notes', 'nutritionNote', 'image']) check(nonempty(recipe[key]), `Beitrag: ${key} fehlt.`);
+    check(Array.isArray(recipe.sections) && recipe.sections.length > 0, 'Beitrag braucht Abschnitte.');
+    const ids = new Set();
+    for (const section of recipe.sections) {
+      check(typeof section.id === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(section.id) && !ids.has(section.id), 'Abschnitt-ID fehlt oder ist doppelt.');
+      ids.add(section.id);
+      for (const key of ['title', 'description', 'nutritionText']) check(nonempty(section[key]), `Abschnitt: ${key} fehlt.`);
+      for (const key of ['ingredients', 'steps']) check(Array.isArray(section[key]) && section[key].length > 0 && section[key].every(nonempty), `Abschnitt: ${key} fehlt.`);
+      check(nonempty(section.image), 'Abschnittsbild fehlt.');
+      validateImage(section, check);
+    }
+    return;
+  }
   check(Number.isInteger(recipe.servings) && recipe.servings > 0, 'Portionen als positive ganze Zahl angeben.');
   for (const key of ['prepMinutes', 'cookMinutes', 'restMinutes']) check(Number.isInteger(recipe[key]) && recipe[key] >= 0, `${key} muss eine nicht negative ganze Zahl sein.`);
   check(recipe.prepMinutes + recipe.cookMinutes + recipe.restMinutes > 0, 'Gesamtzeit muss grösser als null sein.');
   for (const key of ['ingredients', 'steps']) check(Array.isArray(recipe[key]) && recipe[key].length > 0 && recipe[key].every(nonempty), `${key} als nicht leere Textliste angeben.`);
-  if (recipe.image) {
-    check(/^\/assets\/[a-zA-Z0-9_./-]+\.(?:webp|jpe?g|png)$/i.test(recipe.image) && !recipe.image.includes('..'), 'Bild muss eine lokale Datei unter /assets/ sein.');
-    check(existsSync(resolve(root, recipe.image.slice(1))), 'Bilddatei fehlt.');
-    check(nonempty(recipe.imageAlt), 'Alternativtext für das Bild fehlt.');
-    check(Number.isInteger(recipe.imageWidth) && recipe.imageWidth > 0 && Number.isInteger(recipe.imageHeight) && recipe.imageHeight > 0, 'Bildabmessungen ergänzen.');
-  }
   if (recipe.notes !== undefined) check(typeof recipe.notes === 'string', 'notes muss Text sein.');
   if (recipe.nutritionPerServing != null) {
     const n = recipe.nutritionPerServing;
@@ -101,12 +125,14 @@ const recipes = allRecipes.filter(r => r.status === 'published').sort((a, b) => 
 const totalMinutes = r => r.prepMinutes + r.cookMinutes + r.restMinutes;
 const categoryName = slug => categories.find(c => c.slug === slug).name;
 const formatNumber = number => new Intl.NumberFormat('de-CH', { maximumFractionDigits: 1 }).format(number);
-function recipeImage(r, hero = false) {
-  return r.image ? `<img src="${escape(r.image)}" width="${r.imageWidth}" height="${r.imageHeight}" alt="${escape(r.imageAlt)}"${r.imageFit === 'contain' ? ' style="object-fit:contain"' : ''} ${hero ? 'fetchpriority="high"' : 'loading="lazy"'}>` : `<div class="recipe-without-photo" aria-hidden="true"><span>W.</span><small>WICKI SPORT / REZEPTE</small></div>`;
+function recipeImage(r, hero = false, detail = false) {
+  const responsive = r.imageSmall ? ` srcset="${escape(r.imageSmall)} ${r.imageSmallWidth}w, ${escape(r.image)} ${r.imageWidth}w" sizes="${hero || detail ? '(max-width: 760px) 88vw, 46vw' : '(max-width: 520px) 88vw, (max-width: 1100px) 43vw, 28vw'}"` : '';
+  return r.image ? `<img src="${escape(r.image)}"${responsive} width="${r.imageWidth}" height="${r.imageHeight}" alt="${escape(r.imageAlt)}"${r.imageFit === 'contain' ? ' style="object-fit:contain"' : ''} ${hero ? 'fetchpriority="high"' : 'loading="lazy"'}>` : `<div class="recipe-without-photo" aria-hidden="true"><span>W.</span><small>WICKI SPORT / REZEPTE</small></div>`;
 }
 function recipeCard(r) {
-  const search = [r.title, r.description, ...r.ingredients, ...r.categories.map(categoryName)].join(' ');
-  return `<article class="recipe-card" data-recipe-card data-search="${escape(search)}"><a href="/rezepte/${r.slug}/" class="recipe-card-link"><div class="recipe-card-media">${recipeImage(r)}</div><div class="recipe-card-body"><p class="recipe-category">${r.categories.map(categoryName).map(escape).join(' · ')}</p><h3>${escape(r.title)}</h3><p>${escape(r.description)}</p><p class="recipe-meta">${totalMinutes(r)} Min. gesamt <span aria-hidden="true">·</span> ${escape(r.servingsLabel || `${r.servings} ${r.servings === 1 ? 'Portion' : 'Portionen'}`)}</p><span class="text-link">REZEPT ANSEHEN ↗</span></div></a></article>`;
+  const search = [r.title, r.description, ...(r.ingredients || r.sections.flatMap(s => [s.title, ...s.ingredients])), ...r.categories.map(categoryName)].join(' ');
+  const meta = r.type === 'article' ? escape(r.cardMeta) : `${escape(r.totalTimeLabel || `${totalMinutes(r)} Min.`)} gesamt <span aria-hidden="true">·</span> ${escape(r.servingsLabel || `${r.servings} ${r.servings === 1 ? 'Portion' : 'Portionen'}`)}`;
+  return `<article class="recipe-card" data-recipe-card data-search="${escape(search)}"><a href="/rezepte/${r.slug}/" class="recipe-card-link"><div class="recipe-card-media">${recipeImage(r)}</div><div class="recipe-card-body"><p class="recipe-category">${r.categories.map(categoryName).map(escape).join(' · ')}</p><h3>${escape(r.title)}</h3><p>${escape(r.description)}</p><p class="recipe-meta">${meta}</p><span class="text-link">${r.type === 'article' ? 'BEITRAG' : 'REZEPT'} ANSEHEN ↗</span></div></a></article>`;
 }
 function categoryNavigation(selected) {
   const links = [{ slug: '', name: 'Alle Rezepte' }, ...categories];
@@ -120,16 +146,25 @@ function recipeIndex(category = null) {
     + `<section class="section recipe-collection" aria-labelledby="collection-title">${categoryNavigation(category?.slug || '')}<div class="collection-heading"><h2 id="collection-title">${category ? 'REZEPTE IN DIESER KATEGORIE' : 'DIE REZEPTSAMMLUNG'}</h2><p class="recipe-count" data-recipe-count role="status" aria-live="polite">${list.length} ${list.length === 1 ? 'Rezept' : 'Rezepte'}</p></div>`
     + (list.length ? `<form class="recipe-search" role="search" data-recipe-search hidden><label for="recipe-query">Rezepte oder Zutaten suchen${category ? ' – in dieser Kategorie' : ''}</label><div><input id="recipe-query" name="q" type="search" autocomplete="off" placeholder="Zum Beispiel: Poulet, Eier, Vanille" aria-controls="recipe-grid"><button type="reset" class="button button-outline">Zurücksetzen</button></div></form><div class="recipe-grid" id="recipe-grid">${list.map(recipeCard).join('')}</div><p class="search-empty" data-search-empty hidden>Kein passendes Rezept gefunden. Versuche einen anderen Suchbegriff${category ? ' oder wähle «Alle Rezepte»' : ''}.</p>`
       : `<div class="collection-empty"><span class="empty-mark" aria-hidden="true">W.</span><div><p class="eyebrow">SCHRITT FÜR SCHRITT</p><h3>${category ? 'DAS ERSTE REZEPT FOLGT.' : 'HIER ENTSTEHT ETWAS GUTES.'}</h3><p>${category ? `Die Sammlung für ${escape(category.name)} wächst nach und nach. Sobald ein Rezept veröffentlicht ist, findest du es hier mit Zutaten und Zubereitung.` : 'Diese Sammlung wächst mit neuen Rezepten aus meiner Küche. Du findest hier künftig Zutaten, Zubereitung und praktische Hinweise für deinen Alltag.'}</p><a class="text-link" href="${category ? '/rezepte/' : '/coaching/#kontakt'}">${category ? 'ALLE KATEGORIEN ANSEHEN' : 'FRAGEN ZUR ERNÄHRUNG? SCHREIB MIR'} ↗</a></div></div>`)
-    + `</section>${category ? '' : `<section class="section category-overview" aria-labelledby="category-title"><p class="eyebrow">DEIN EINSTIEG</p><h2 id="category-title">DREI KATEGORIEN.<br><em>DEINE AUSWAHL.</em></h2>${categoryCards()}</section>`}`;
+    + `</section>${category ? '' : `<section class="section category-overview" aria-labelledby="category-title"><p class="eyebrow">DEIN EINSTIEG</p><h2 id="category-title">DEINE KATEGORIEN.<br><em>DEINE AUSWAHL.</em></h2>${categoryCards(true)}</section>`}`;
   render({ key: 'rezepte', path: `/rezepte/${category ? category.slug + '/' : ''}`, title: `${title} | Wicki Sport`, description: intro }, main);
 }
 recipeIndex();
 categories.forEach(recipeIndex);
 
+function renderArticle(r) {
+  const sections = r.sections.map((s, i) => `<section class="recipe-notes" id="${s.id}" aria-labelledby="${s.id}-title"><p class="eyebrow">${s.bonus ? 'ZUSÄTZLICHE KOMBINATION' : `SNACK ${i + 1}`}</p><h2 id="${s.id}-title">${escape(s.title)}</h2><div class="recipe-detail-top"><div class="recipe-cover">${recipeImage(s, false, true)}${s.imageCaption ? `<p class="nutrition-note">${escape(s.imageCaption)}</p>` : ''}</div><div><p>${escape(s.description)}</p>${s.portion ? `<p><strong>Portionen:</strong> ${escape(s.portion)}</p>` : ''}${s.time ? `<p><strong>Zubereitungszeit:</strong> ${escape(s.time)}</p>` : ''}<h3>ZUTATEN</h3><ul class="ingredient-list">${s.ingredients.map(x => `<li>${escape(x)}</li>`).join('')}</ul></div></div><h3>ZUBEREITUNG</h3><ol class="recipe-steps">${s.steps.map(x => `<li>${escape(x)}</li>`).join('')}</ol><p><strong>Ungefähre Nährwerte pro angegebener Menge:</strong> ${escape(s.nutritionText)}</p>${s.note ? `<p class="nutrition-note">${escape(s.note)}</p>` : ''}</section>`).join('');
+  const main = `<article class="recipe-detail">${heading(r.title, escape(r.title.toUpperCase()), r.description, { path: '/rezepte/snacks/', name: 'Snacks' })}<div class="section recipe-body"><div class="recipe-detail-top"><div class="recipe-cover">${recipeImage(r, true)}</div><div class="recipe-facts"><p class="eyebrow">AUS DER WICKI-SPORT-KÜCHE</p><div class="recipe-categories">${r.categories.map(c => `<a href="/rezepte/${c}/">${categoryName(c)}</a>`).join('')}</div><p>${escape(r.notes)}</p><nav aria-label="Snack-Ideen in diesem Beitrag"><ul class="ingredient-list">${r.sections.map(s => `<li><a href="#${s.id}">${escape(s.title)}</a></li>`).join('')}</ul></nav><button class="button button-outline" type="button" data-print hidden>BEITRAG DRUCKEN</button></div></div>${sections}<aside class="recipe-notes"><h2>HINWEIS ZU DEN NÄHRWERTEN</h2><p>${escape(r.nutritionNote)}</p></aside><a class="text-link" href="/rezepte/snacks/">← ZURÜCK ZU DEN SNACKS</a></div></article>`;
+  // A collection is an editorial Article, not one recipe with a fictitious total yield.
+  const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: r.title, description: r.description, datePublished: r.datePublished, author: { '@type': 'Person', name: 'Matthias Wicki' }, url: `${site}/rezepte/${r.slug}/`, image: site + r.image, keywords: (r.tags || []).join(', ') };
+  render({ key: 'rezepte', path: `/rezepte/${r.slug}/`, title: r.seoTitle || `${r.title} | Wicki Sport`, description: r.seoDescription || r.description, image: r.image, imageAlt: r.imageAlt, recipe: true }, main, schema);
+}
+
 for (const r of recipes) {
+  if (r.type === 'article') { renderArticle(r); continue; }
   const n = r.nutritionPerServing;
   const nutrition = n ? `<aside class="recipe-nutrition" aria-labelledby="nutrition-title"><h2 id="nutrition-title">NÄHRWERTE PRO PORTION</h2><p>Berechnete Näherungswerte für ${r.servings} ${r.servings === 1 ? 'Portion' : 'Portionen'} pro Rezept. Produkte und Portionsgrössen können die Werte verändern.</p><dl>${[['Energie', n.kcal, 'kcal'], ['Protein', n.protein, 'g'], ['Kohlenhydrate', n.carbs, 'g'], ['Fett', n.fat, 'g']].map(([label, value, unit]) => `<div><dt>${label}</dt><dd>${formatNumber(value)} ${unit}</dd></div>`).join('')}</dl><p class="nutrition-note">${escape(n.note)}</p></aside>` : '';
-  const main = `<article class="recipe-detail">${heading(r.title, escape(r.title.toUpperCase()), r.description, { path: '/rezepte/', name: 'Rezepte' })}<div class="section recipe-body"><div class="recipe-detail-top"><div class="recipe-cover">${recipeImage(r, true)}</div><div class="recipe-facts"><p class="eyebrow">AUS DER WICKI-SPORT-KÜCHE</p><div class="recipe-categories">${r.categories.map(c => `<a href="/rezepte/${c}/">${categoryName(c)}</a>`).join('')}</div><dl><div><dt>Portionen</dt><dd>${escape(r.servingsLabel || r.servings)}</dd></div><div><dt>Vorbereitung</dt><dd>${r.prepMinutes} Min.</dd></div><div><dt>Koch-/Backzeit</dt><dd>${r.cookMinutes} Min.</dd></div>${r.restMinutes ? `<div><dt>Ruhe-/Kühlzeit</dt><dd>${r.restMinutes} Min.</dd></div>` : ''}<div><dt>Gesamtzeit</dt><dd>${totalMinutes(r)} Min.</dd></div></dl><p>Von Matthias Wicki · <time datetime="${r.datePublished}">${new Intl.DateTimeFormat('de-CH', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(r.datePublished))}</time></p><button class="button button-outline" type="button" data-print hidden>REZEPT DRUCKEN</button></div></div><div class="recipe-instructions"><section aria-labelledby="ingredients-title"><p class="eyebrow">DAS BRAUCHST DU</p><h2 id="ingredients-title">ZUTATEN</h2><ul class="ingredient-list">${r.ingredients.map(i => `<li>${escape(i)}</li>`).join('')}</ul></section><section aria-labelledby="steps-title"><p class="eyebrow">SCHRITT FÜR SCHRITT</p><h2 id="steps-title">ZUBEREITUNG</h2><ol class="recipe-steps">${r.steps.map(s => `<li>${escape(s)}</li>`).join('')}</ol></section></div>${r.notes ? `<aside class="recipe-notes"><h2>GUT ZU WISSEN</h2><p>${escape(r.notes)}</p></aside>` : ''}${nutrition}<a class="text-link" href="/rezepte/">← ZURÜCK ZU DEN REZEPTEN</a></div></article>`;
+  const main = `<article class="recipe-detail">${heading(r.title, escape(r.title.toUpperCase()), r.description, { path: '/rezepte/', name: 'Rezepte' })}<div class="section recipe-body"><div class="recipe-detail-top"><div class="recipe-cover">${recipeImage(r, true)}</div><div class="recipe-facts"><p class="eyebrow">AUS DER WICKI-SPORT-KÜCHE</p><div class="recipe-categories">${r.categories.map(c => `<a href="/rezepte/${c}/">${categoryName(c)}</a>`).join('')}</div><dl><div><dt>Portionen</dt><dd>${escape(r.servingsLabel || r.servings)}</dd></div><div><dt>Vorbereitung</dt><dd>${r.prepMinutes} Min.</dd></div><div><dt>Koch-/Backzeit</dt><dd>${r.cookMinutes} Min.</dd></div>${r.restMinutes ? `<div><dt>Ruhe-/Kühlzeit</dt><dd>${escape(r.restTimeLabel || `${r.restMinutes} Min.`)}</dd></div>` : ''}<div><dt>Gesamtzeit</dt><dd>${escape(r.totalTimeLabel || `${totalMinutes(r)} Min.`)}</dd></div></dl><p>Von Matthias Wicki · <time datetime="${r.datePublished}">${new Intl.DateTimeFormat('de-CH', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(r.datePublished))}</time></p><button class="button button-outline" type="button" data-print hidden>REZEPT DRUCKEN</button></div></div><div class="recipe-instructions"><section aria-labelledby="ingredients-title"><p class="eyebrow">DAS BRAUCHST DU</p><h2 id="ingredients-title">ZUTATEN</h2><ul class="ingredient-list">${r.ingredients.map(i => `<li>${escape(i)}</li>`).join('')}</ul></section><section aria-labelledby="steps-title"><p class="eyebrow">SCHRITT FÜR SCHRITT</p><h2 id="steps-title">ZUBEREITUNG</h2><ol class="recipe-steps">${r.steps.map(s => `<li>${escape(s)}</li>`).join('')}</ol></section></div>${r.notes ? `<aside class="recipe-notes"><h2>GUT ZU WISSEN</h2><p>${escape(r.notes)}</p></aside>` : ''}${nutrition}<a class="text-link" href="/rezepte/">← ZURÜCK ZU DEN REZEPTEN</a></div></article>`;
   // Use only supplied recipe facts. No ratings, medical claims or invented nutrition.
   const schema = {
     '@context': 'https://schema.org', '@type': 'Recipe', name: r.title, description: r.description,

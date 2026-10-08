@@ -1,0 +1,171 @@
+{
+  "type": "article",
+  "status": "published",
+  "slug": "low-carb-snacks-filmabend",
+  "title": "6 gesunde Low-Carb-Snacks für deinen Filmabend",
+  "description": "Knusprig, salzig oder süss: Diese sechs einfachen Snack-Ideen zeigen, dass ein gemütlicher Filmabend auch ohne klassische Chips und Süssigkeiten abwechslungsreich sein kann.",
+  "categories": ["snacks"],
+  "datePublished": "2026-10-08",
+  "cardMeta": "6 Snack-Ideen · 1 Kombiteller",
+  "image": "/assets/filmabend-snackteller.webp",
+  "imageSmall": "/assets/filmabend-snackteller-640.webp",
+  "imageSmallWidth": 640,
+  "imageWidth": 1370,
+  "imageHeight": 1148,
+  "imageFit": "contain",
+  "imageAlt": "Low-Carb-Filmabend-Snackteller mit Parmesan-Chips, gerösteten Mandeln und Schoko-Erdbeeren",
+  "notes": "Sechs Ideen und eine zusätzliche Kombination – alles in einem Beitrag. Wähle nach Geschmack und passender Portionsgrösse. Low Carb bedeutet nicht automatisch ketogen: Ob einzelne Ideen als Keto-Snacks passen, hängt auch von der Menge und deiner gesamten Ernährung ab.",
+  "nutritionNote": "Alle Nährwerte sind ungefähre Schätzwerte für die jeweils vollständig angegebene Menge, nicht für alle Snacks zusammen. Produkte, Portionsgrössen und Ölmenge verändern die Werte. Die Beispielrechnungen verwenden unter anderem Joghurt mit 10 % Fett, typische Werte für Vanille-Whey-Isolat sowie dunkle Schokolade mit 85–87 % Kakao. Optionale Zutaten und zusätzliche Bilddekoration sind nicht eingerechnet. Bei abweichenden Zahlen im Foto gelten die hier beschriebenen Zutaten und Schätzwerte; das Foto bleibt ein Serviervorschlag. Für genaue Werte bitte die Etiketten deiner Produkte verwenden.",
+  "tags": ["Gesunde Snacks", "Low Carb Filmabend", "Snack-Ideen", "Gesunde Ernährung"],
+  "seoTitle": "6 Low-Carb-Snacks für den Filmabend | Wicki Sport",
+  "seoDescription": "Sechs süsse und salzige Low-Carb-Snack-Ideen für den Filmabend: mit Zutaten, Zubereitung, ungefähren Nährwerten und einem zusätzlichen Snackteller.",
+  "sections": [
+    {
+      "id": "parmesan-chips",
+      "title": "Knusprige Parmesan-Chips",
+      "description": "Aus einer einzigen Zutat entstehen würzige, knusprige Käsechips. Entscheidend ist, sie nach dem Backen vollständig auskühlen zu lassen.",
+      "image": "/assets/parmesan-chips.webp",
+      "imageSmall": "/assets/parmesan-chips-640.webp",
+      "imageSmallWidth": 631,
+      "imageWidth": 1320,
+      "imageHeight": 1338,
+      "imageFit": "contain",
+      "imageAlt": "Goldbraune, knusprige Parmesan-Chips als salziger Snack",
+      "ingredients": ["40 g Parmesan"],
+      "steps": [
+        "Parmesan fein reiben und in kleinen Häufchen auf Backpapier verteilen.",
+        "Bei 180 °C Ober-/Unterhitze etwa 6–9 Minuten goldbraun backen.",
+        "Vollständig auskühlen lassen, damit die Chips knusprig werden."
+      ],
+      "nutritionText": "ca. 160 kcal · 13 g Protein · 12 g Fett · unter 1 g Kohlenhydrate"
+    },
+    {
+      "id": "schoko-erdbeeren",
+      "title": "Erdbeeren mit dunkler Schokolade",
+      "description": "Fruchtige Erdbeeren treffen auf eine dünne, herbe Schokoladenschicht – ein unkomplizierter süsser Snack aus zwei Zutaten.",
+      "image": "/assets/schoko-erdbeeren.webp",
+      "imageSmall": "/assets/schoko-erdbeeren-640.webp",
+      "imageSmallWidth": 640,
+      "imageWidth": 1320,
+      "imageHeight": 915,
+      "imageFit": "contain",
+      "imageAlt": "Frische Erdbeeren mit einem Überzug aus dunkler Schokolade",
+      "ingredients": ["100 g Erdbeeren", "15 g dunkle Schokolade (87 % Kakao)"],
+      "steps": [
+        "Schokolade vorsichtig schmelzen.",
+        "Erdbeeren waschen, gründlich trocknen und mit der Schokolade überziehen.",
+        "Im Kühlschrank fest werden lassen."
+      ],
+      "nutritionText": "ca. 120 kcal · 3 g Protein · 7 g Fett · 9 g Kohlenhydrate"
+    },
+    {
+      "id": "paprika-mandeln",
+      "title": "Geröstete Paprika-Mandeln",
+      "description": "Paprika und Salz geben den gerösteten Mandeln eine herzhafte Note. Wer mag, ergänzt etwas Rosmarin.",
+      "image": "/assets/paprika-mandeln.webp",
+      "imageSmall": "/assets/paprika-mandeln-640.webp",
+      "imageSmallWidth": 640,
+      "imageWidth": 1320,
+      "imageHeight": 1016,
+      "imageFit": "contain",
+      "imageAlt": "Geröstete Nüsse mit Paprikagewürz und Rosmarin als Serviervorschlag für Paprika-Mandeln",
+      "ingredients": ["30 g Mandeln", "Wenig Olivenöl (ca. 2 g)", "Paprikapulver", "Salz", "Optional: Rosmarin"],
+      "steps": [
+        "Mandeln mit Olivenöl und Gewürzen vermengen.",
+        "Bei 160 °C etwa 10–12 Minuten rösten und anschliessend auskühlen lassen."
+      ],
+      "nutritionText": "ca. 205 kcal · 7 g Protein · 18 g Fett · 2 g Kohlenhydrate",
+      "note": "Die Beispielrechnung enthält ca. 2 g Olivenöl. Mehr Öl erhöht den Energie- und Fettgehalt."
+    },
+    {
+      "id": "gemuese-sticks",
+      "title": "Gemüse-Sticks mit Kräuterdip",
+      "description": "Knackige Gurken und Peperoni lassen sich mit einem cremigen Joghurt-Kräuterdip unkompliziert zum Film teilen.",
+      "image": "/assets/gemuese-sticks-kraeuterdip.webp",
+      "imageSmall": "/assets/gemuese-sticks-kraeuterdip-640.webp",
+      "imageSmallWidth": 640,
+      "imageWidth": 1320,
+      "imageHeight": 1308,
+      "imageFit": "contain",
+      "imageAlt": "Bunte Gemüse-Sticks neben einem cremigen Kräuterdip",
+      "imageCaption": "Serviervorschlag mit zusätzlichem Gemüse. Die Nährwerte beziehen sich auf Gurken und Peperoni in der angegebenen Menge.",
+      "ingredients": ["150 g Gurken und Peperoni", "100 g griechischer Joghurt", "Kräuter", "Salz und Pfeffer"],
+      "steps": [
+        "Gemüse waschen und in Sticks schneiden.",
+        "Joghurt mit Kräutern und Gewürzen verrühren und als Dip servieren."
+      ],
+      "nutritionText": "ca. 150 kcal · 4 g Protein · 10 g Fett · 8 g Kohlenhydrate",
+      "note": "Beispielrechnung mit je 75 g Gurke und Peperoni sowie Joghurt mit 10 % Fett. Der Proteingehalt griechischer Joghurts unterscheidet sich je nach Produkt deutlich."
+    },
+    {
+      "id": "vanille-protein-baellchen",
+      "title": "Vanille-Protein-Bällchen",
+      "description": "Vanille-Isowhey und Mandelmus werden zu kleinen, formbaren Bällchen. Optional sorgt etwas ungesüsstes Kakaopulver für eine herbe Hülle.",
+      "image": "/assets/vanille-protein-baellchen.webp",
+      "imageSmall": "/assets/vanille-protein-baellchen-640.webp",
+      "imageSmallWidth": 631,
+      "imageWidth": 1320,
+      "imageHeight": 1338,
+      "imageFit": "contain",
+      "imageAlt": "Protein-Bällchen mit Schokoladenüberzug und gehackten Nüssen als Serviervorschlag",
+      "imageCaption": "Serviervorschlag mit Schokoladenüberzug und gehackten Nüssen. Das Rezept unten und seine Nährwerte gelten für die Variante ohne diesen Überzug und ohne zusätzliche Nüsse.",
+      "ingredients": ["25 g ZNT Isowhey Pro Vanille", "20 g Mandelmus", "Wenig ungesüsste Mandelmilch (zunächst ca. 10 ml)", "Optional: ungesüsstes Kakaopulver"],
+      "steps": [
+        "Isowhey und Mandelmus vermischen.",
+        "Wenig Mandelmilch hinzufügen, bis eine formbare Masse entsteht.",
+        "Kleine Kugeln formen und optional in Kakaopulver wälzen.",
+        "Kurz kaltstellen."
+      ],
+      "nutritionText": "ca. 220 kcal · 26 g Protein · 11 g Fett · 3 g Kohlenhydrate",
+      "note": "Für die gesamte angegebene Menge, nicht pro Bällchen. Beispielrechnung mit 10 ml ungesüsster Mandelmilch, ohne optionales Kakaopulver."
+    },
+    {
+      "id": "popcorn",
+      "title": "Selbstgemachtes Popcorn",
+      "description": "Der Filmabend-Klassiker lässt sich mit wenig Öl und einer Prise Salz selbst zubereiten. Hier bleibt die Portion bewusst klein.",
+      "image": "/assets/selbstgemachtes-popcorn.webp",
+      "imageSmall": "/assets/selbstgemachtes-popcorn-640.webp",
+      "imageSmallWidth": 640,
+      "imageWidth": 1320,
+      "imageHeight": 1316,
+      "imageFit": "contain",
+      "imageAlt": "Schüssel mit selbstgemachtem, leicht gesalzenem Popcorn",
+      "ingredients": ["20 g Popcornmais", "5 g Olivenöl", "Salz"],
+      "steps": [
+        "Öl in einem Topf erhitzen.",
+        "Popcornmais dazugeben, Deckel aufsetzen und bei mittlerer bis hoher Hitze aufpoppen lassen. Den Topf gelegentlich vorsichtig schütteln.",
+        "Vom Herd nehmen, sobald das Poppen weitgehend aufhört, und anschliessend leicht salzen."
+      ],
+      "nutritionText": "ca. 115 kcal · 2 g Protein · 6 g Fett · 12 g Kohlenhydrate",
+      "note": "Popcorn enthält mehr Kohlenhydrate als die übrigen Optionen. In einer moderaten Low-Carb-Ernährung kann eine kleine Portion dennoch Platz finden. Es ist hier nicht als ketogener Snack eingeordnet."
+    },
+    {
+      "id": "filmabend-snackteller",
+      "bonus": true,
+      "title": "Low-Carb-Filmabend-Snackteller – die perfekte Kombination aus süss und salzig",
+      "description": "Warum nur einen Snack auswählen? Dieser Snackteller kombiniert knusprige Parmesan-Chips, würzige Röstmandeln und fruchtige Schoko-Erdbeeren zu einem abwechslungsreichen Filmabend-Genuss.",
+      "portion": "1",
+      "time": "ca. 20 Minuten aktive Zubereitung, zuzüglich Back-, Abkühl- und Kühlzeit",
+      "image": "/assets/filmabend-snackteller.webp",
+      "imageSmall": "/assets/filmabend-snackteller-640.webp",
+      "imageSmallWidth": 640,
+      "imageWidth": 1370,
+      "imageHeight": 1148,
+      "imageFit": "contain",
+      "imageAlt": "Filmabend-Snackteller mit knusprigen Parmesan-Chips, Paprika-Mandeln und Schoko-Erdbeeren",
+      "ingredients": ["30 g Parmesan", "20 g Mandeln", "100 g Erdbeeren", "10 g dunkle Schokolade (87 % Kakao)", "½ TL Olivenöl (ca. 2,5 g)", "Paprikapulver", "Meersalz", "Optional: Rosmarin"],
+      "steps": [
+        "Parmesan fein reiben und in kleinen Häufchen auf Backpapier verteilen.",
+        "Bei 180 °C Ober-/Unterhitze 6–9 Minuten goldbraun backen und auskühlen lassen.",
+        "Mandeln mit Olivenöl, Paprika, Salz und optional Rosmarin vermengen.",
+        "Die Ofentemperatur auf 160 °C reduzieren und die Mandeln etwa 10–12 Minuten rösten. Anschliessend auskühlen lassen.",
+        "Schokolade vorsichtig schmelzen.",
+        "Erdbeeren waschen, gründlich trocknen und mit der Schokolade überziehen.",
+        "Schoko-Erdbeeren etwa 10–15 Minuten kaltstellen.",
+        "Alle drei Komponenten auf einem Teller oder Holzbrett anrichten."
+      ],
+      "nutritionText": "ca. 360 kcal · 16 g Protein · 27 g Fett · 9 g Kohlenhydrate",
+      "note": "Die Nährwerte gelten für den vollständigen Teller mit den hier angegebenen, kleineren Einzelmengen. Sie sind nicht die Summe der drei grösseren Snack-Portionen weiter oben. Gewürze und Rosmarin sind nicht eingerechnet."
+    }
+  ]
+}
