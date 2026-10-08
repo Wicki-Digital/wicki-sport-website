@@ -1,0 +1,51 @@
+{
+  "status": "published",
+  "slug": "low-carb-erdbeer-vanille-cheesecake",
+  "title": "Low-Carb Erdbeer-Vanille-Cheesecake im Glas",
+  "description": "Ein cremiges, proteinreiches Dessert mit fruchtigen Erdbeeren, Vanille-Whey und knackiger dunkler Schokolade. Schnell zubereitet, ohne Backen und mit wenigen Kohlenhydraten.",
+  "categories": ["snacks"],
+  "datePublished": "2026-10-08",
+  "servings": 1,
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "restMinutes": 15,
+  "restTimeLabel": "15–30 Min.",
+  "totalTimeLabel": "25–40 Min.",
+  "image": "/assets/erdbeer-vanille-cheesecake.webp",
+  "imageSmall": "/assets/erdbeer-vanille-cheesecake-640.webp",
+  "imageSmallWidth": 640,
+  "imageWidth": 1370,
+  "imageHeight": 1148,
+  "imageFit": "contain",
+  "imageAlt": "Low-Carb Erdbeer-Vanille-Cheesecake im Glas mit dunkler Schokolade und Mandeln",
+  "ingredients": [
+    "150 g griechischer Joghurt nature (5 % Fett)",
+    "20 g ZNT Isowhey Pro Vanille",
+    "60 g Erdbeeren",
+    "10 g dunkle Schokolade (87 % Kakao)",
+    "10 g Mandeln",
+    "10–20 ml ungesüsste Mandelmilch",
+    "Optional: Zimt oder Zitronenabrieb"
+  ],
+  "steps": [
+    "Griechischen Joghurt mit dem Vanille-Isowhey verrühren.",
+    "Mandelmilch langsam dazugeben, bis eine dicke Creme entsteht.",
+    "Erdbeeren auftauen, falls gefroren, und leicht zerdrücken.",
+    "Schokolade fein hacken.",
+    "Mandeln grob zerkleinern.",
+    "Vanillecreme und Erdbeeren abwechselnd in ein Glas schichten.",
+    "Mit Schokolade und Mandeln garnieren.",
+    "Für 15–30 Minuten kaltstellen und anschliessend geniessen."
+  ],
+  "notes": "Ohne Backen: ca. 10 Minuten Vorbereitung plus 15–30 Minuten Kühlzeit, insgesamt ca. 25–40 Minuten. Die Zeitangaben in den Rezeptdaten beziehen sich auf die Mindestkühlzeit. Für eine glutenfreie Variante die Kennzeichnung von Whey und Schokolade prüfen. Das Foto ist ein Serviervorschlag; Nährwertangaben im Bild können von der Beispielrechnung abweichen.",
+  "nutritionPerServing": {
+    "kcal": 355,
+    "protein": 34,
+    "fat": 18,
+    "carbs": 11,
+    "note": "Ungefähre Werte pro Glas. Beispielrechnung mit griechischem Joghurt mit 5 % Fett und 9 g Protein pro 100 g, 15 ml Mandelmilch sowie typischen Werten für Vanille-Whey-Isolat und dunkle Schokolade mit 85–87 % Kakao. Die konkreten Produktetiketten sind massgebend; besonders Joghurt, Whey und Schokolade können die Werte verändern."
+  },
+  "tags": ["Low Carb", "High Protein", "Dessert", "No-Bake", "Glutenfrei"],
+  "seoTitle": "Low-Carb Protein-Cheesecake im Glas | Wicki Sport",
+  "seoDescription": "Low-Carb Dessert ohne Backen: Erdbeer-Vanille-Cheesecake im Glas mit Joghurt, Vanille-Whey, Mandeln und dunkler Schokolade. In 10 Minuten vorbereitet."
+}
